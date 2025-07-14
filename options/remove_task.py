@@ -16,8 +16,6 @@ class RemoveTask:
                 json.dump([], file)
 
     def remove_task(self):
-        ViewTask().view_tasks()
-
         try:
             with open(self.fileName, "r", encoding="UTF-8") as file:
                 tasks = json.load(file)
@@ -26,7 +24,7 @@ class RemoveTask:
             return
 
         while True:
-            removedTask = self.handler.remove_task_handler()
+            removedTask = self.handler.remove_modify_task_handler("remove")
 
             if isinstance(removedTask, int):
                 # Remove by Index

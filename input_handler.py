@@ -23,13 +23,13 @@ class InputHandler(ErrorChecker):
             self._first_time = False
 
     def ask_for_menu_choice(self):
-        value_range = [1, 4]
+        value_range = [1, 6]
         while True:
             self.printer.menu()
             try:
-                choice = int(input("Please enter a number (1–4): ").strip())
+                choice = int(input("Please enter a number (1–6): ").strip())
             except ValueError:
-                print("Invalid input. Please enter a number between 1 and 4.")
+                print("Invalid input. Please enter a number between 1 and 6.")
                 continue
 
             if not self.check_range(choice, value_range):
@@ -40,13 +40,13 @@ class InputHandler(ErrorChecker):
     def add_task_handler():
         while True:
             task = input("Enter your task: ")
-            isTaskCorrectFormation = ErrorChecker.check_addTask(task)
+            isTaskCorrectFormation = ErrorChecker.check_taskName(task)
             if isTaskCorrectFormation:
                 return task
 
     @staticmethod
-    def remove_task_handler():
-        print("\nWhich task do you want to remove? ")
+    def remove_modify_task_handler(type_of_task):
+        print(f"\nWhich task do you want to {type_of_task}? ")
 
         task = input("Enter either index or task name: ")
         try:
@@ -54,3 +54,11 @@ class InputHandler(ErrorChecker):
             return taskNumber
         except ValueError:
             return task
+
+    @staticmethod
+    def modify_task_handler():
+        while True:
+            newTaskName = input("What is the new name of the task? ")
+            isTaskCorrectFormation = ErrorChecker.check_taskName(newTaskName)
+            if isTaskCorrectFormation:
+                return newTaskName

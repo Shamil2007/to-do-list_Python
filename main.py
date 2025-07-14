@@ -14,7 +14,7 @@ class Main:
 
         while True:
             choice = self.input_handler.ask_for_menu_choice()
-            if TaskManager.choose_option(choice) == 4:
+            if TaskManager.choose_option(choice) == 6:
                 break
 
 

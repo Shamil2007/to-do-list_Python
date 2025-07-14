@@ -21,11 +21,11 @@ class ErrorChecker:
         return False
 
     @staticmethod
-    def check_addTask(task):
+    def check_taskName(task):
         task = task.strip()
 
         if len(task) == 0:
-            print("❗ The task cannot be empty!")
+            print("❗ The task name cannot be empty!")
             return False
 
         elif len(task) <= 3:
@@ -37,7 +37,7 @@ class ErrorChecker:
             return False
 
         elif len(task) > 100:
-            print("⚠️ Task is too long — keep it under 100 characters.")
+            print("⚠️ Task name is too long — keep it under 100 characters.")
             return False
 
         return True
