@@ -6,7 +6,7 @@ from input_handler import InputHandler
 
 
 class AddTask:
-    def __init__(self, fileName="files/to_do.json"):
+    def __init__(self, fileName="lists/to_do.json"):
         self.fileName = fileName
         self.handler = InputHandler()
 

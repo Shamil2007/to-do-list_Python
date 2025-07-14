@@ -1,3 +1,5 @@
+import os
+
 from error_checker import ErrorChecker
 from printers import Printers
 
@@ -22,10 +24,10 @@ class InputHandler(ErrorChecker):
                 self.printer.print_usage_info()
             self._first_time = False
 
-    def ask_for_menu_choice(self):
+    def ask_for_menu_choice(self, fileName):
         value_range = [1, 6]
         while True:
-            self.printer.menu()
+            self.printer.menu(fileName)
             try:
                 choice = int(input("Please enter a number (1–6): ").strip())
             except ValueError:
@@ -45,7 +47,7 @@ class InputHandler(ErrorChecker):
                 return task
 
     @staticmethod
-    def remove_modify_task_handler(type_of_task):
+    def find_task_handler(type_of_task):
         print(f"\nWhich task do you want to {type_of_task}? ")
 
         task = input("Enter either index or task name: ")
@@ -62,3 +64,16 @@ class InputHandler(ErrorChecker):
             isTaskCorrectFormation = ErrorChecker.check_taskName(newTaskName)
             if isTaskCorrectFormation:
                 return newTaskName
+
+    @staticmethod
+    def set_file_name(folder):
+        while True:
+            name = input("Enter the file name (e.g., todo.json): ").strip()
+            if ErrorChecker.is_valid_filename(name):
+                full_path = os.path.join(folder, name)
+                if os.path.exists(full_path):
+                    print("A file with this name already exists.")
+                    overwrite = input("Do you want to overwrite it? (y/n): ").lower()
+                    if overwrite != 'y':
+                        return "No override", full_path
+                return '_', full_path

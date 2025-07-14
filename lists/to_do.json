@@ -28,5 +28,10 @@
       "Task": "ASk for view tasks in modify abd remove",
       "Date": "2025-07-14",
       "Index": 6
+   },
+   {
+      "Task": "The new task should not be in the tasks",
+      "Date": "2025-07-14",
+      "Index": 7
    }
 ]

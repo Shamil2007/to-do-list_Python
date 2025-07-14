@@ -1,3 +1,6 @@
+import re
+
+
 class ErrorChecker:
     @staticmethod
     def check_boolean_input(user_input):
@@ -40,4 +43,17 @@ class ErrorChecker:
             print("⚠️ Task name is too long — keep it under 100 characters.")
             return False
 
+        return True
+
+    @staticmethod
+    def is_valid_filename(name):
+        if not name.strip():
+            print("Filename cannot be empty.")
+            return False
+        if re.search(r'[<>:"/\\|?*]', name):
+            print("Filename contains invalid characters.")
+            return False
+        if not name.endswith(".json"):
+            print("Filename must end with .json.")
+            return False
         return True

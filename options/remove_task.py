@@ -7,7 +7,7 @@ from options.view_task import ViewTask
 
 
 class RemoveTask:
-    def __init__(self, filename="files/to_do.json"):
+    def __init__(self, filename="lists/to_do.json"):
         self.fileName = filename
         self.handler = InputHandler()
 
@@ -24,7 +24,7 @@ class RemoveTask:
             return
 
         while True:
-            removedTask = self.handler.remove_modify_task_handler("remove")
+            removedTask = self.handler.find_task_handler("remove")
 
             if isinstance(removedTask, int):
                 # Remove by Index

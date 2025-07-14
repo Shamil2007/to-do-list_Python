@@ -12,9 +12,10 @@ class Main:
         self.printer.intro_to_list()
         self.input_handler.ask_to_show_readme()
 
+        manager = TaskManager()
         while True:
-            choice = self.input_handler.ask_for_menu_choice()
-            if TaskManager.choose_option(choice) == 6:
+            choice = self.input_handler.ask_for_menu_choice(manager.fileName)
+            if manager.choose_option(choice) == 6:
                 break
 
 

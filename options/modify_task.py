@@ -6,7 +6,7 @@ from input_handler import InputHandler
 
 
 class ModifyTask:
-    def __init__(self, fileName="files/to_do.json"):
+    def __init__(self, fileName="lists/to_do.json"):
         self.fileName = fileName
         self.handler = InputHandler()
 
@@ -23,7 +23,7 @@ class ModifyTask:
             return
 
         while True:
-            task_to_modify = self.handler.remove_modify_task_handler("modify")
+            task_to_modify = self.handler.find_task_handler("modify")
 
             if isinstance(task_to_modify, int):
                 if not any(task.get("Index") == task_to_modify for task in tasks):

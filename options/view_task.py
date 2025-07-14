@@ -1,7 +1,9 @@
 import json
+import time
+
 
 class ViewTask:
-    def __init__(self, fileName="files/to_do.json"):
+    def __init__(self, fileName="lists/to_do.json"):
         self.fileName = fileName
 
     def view_tasks(self):
@@ -14,6 +16,7 @@ class ViewTask:
 
         for task in tasks:
             for data in task:
+                time.sleep(0.3)
                 if data == "Task":
                     print(f"Task is '{task[data]}'")
                 elif data == "Date":

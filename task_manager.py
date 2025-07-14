@@ -1,22 +1,26 @@
 from options.add_task import AddTask
+from options.change_file import ChangeFile
 from options.modify_task import ModifyTask
 from options.remove_task import RemoveTask
 from options.view_task import ViewTask
 
 
 class TaskManager:
-    @staticmethod
-    def choose_option(option):
+    def __init__(self):
+        self.fileName = "lists/to_do.json"
+
+    def choose_option(self, option):
         if option == 1:
-           AddTask().add_task()
+           AddTask(self.fileName).add_task()
         elif option == 2:
-            RemoveTask().remove_task()
+            RemoveTask(self.fileName).remove_task()
         elif option == 3:
-            ViewTask().view_tasks()
+            ViewTask(self.fileName).view_tasks()
         elif option == 4:
-            ModifyTask().modify_text()
+            ModifyTask(self.fileName).modify_text()
         elif option == 5:
-            print("Change file")
+            self.fileName = ChangeFile().change_file()
+            print(f"File changed to: {self.fileName}")
         else:
             print("Thanks for using this To-Do List App. Happy organizing!")
 

@@ -1,3 +1,4 @@
+import time
 import time as t
 
 
@@ -103,7 +104,11 @@ class Printers:
         print("               ========================================\n")
 
     @staticmethod
-    def menu():
+    def menu(fileName):
+        time.sleep(0.3)
+        print(f"\nActive file: {fileName[6:]}")
+        time.sleep(0.3)
+
         print("""
 > What would you like to do?
     > 1. Add Task
