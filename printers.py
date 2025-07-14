@@ -114,5 +114,8 @@ class Printers:
     > 1. Add Task
     > 2. Remove Task
     > 3. View Tasks
-    > 4. Exit
+    > 4. Done Tasks (not yet)
+    > 5. Modify Task
+    > 6. Change File
+    > 7. Exit
         """)

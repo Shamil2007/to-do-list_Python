@@ -1,6 +1,7 @@
 import os
 
 from error_checker import ErrorChecker
+from options.view_task import ViewTask
 from printers import Printers
 
 class InputHandler(ErrorChecker):
@@ -24,14 +25,14 @@ class InputHandler(ErrorChecker):
                 self.printer.print_usage_info()
             self._first_time = False
 
-    def ask_for_menu_choice(self, fileName):
-        value_range = [1, 6]
+    def ask_for_menu_choice(self, fileName, maxRange):
+        value_range = [1, maxRange]
         while True:
             self.printer.menu(fileName)
             try:
-                choice = int(input("Please enter a number (1–6): ").strip())
+                choice = int(input(f"Please enter a number (1–{maxRange}): ").strip())
             except ValueError:
-                print("Invalid input. Please enter a number between 1 and 6.")
+                print(f"Invalid input. Please enter a number between 1 and {maxRange}.")
                 continue
 
             if not self.check_range(choice, value_range):
@@ -47,15 +48,23 @@ class InputHandler(ErrorChecker):
                 return task
 
     @staticmethod
-    def find_task_handler(type_of_task):
-        print(f"\nWhich task do you want to {type_of_task}? ")
+    def find_task_handler(type_of_task, fileName):
+        while True:
+            print(f"\nWhich task do you want to {type_of_task}? (Type '!' to view all tasks or 'exit' to cancel)")
+            task = input("Enter either index or task name: ").strip()
 
-        task = input("Enter either index or task name: ")
-        try:
-            taskNumber = int(task)
-            return taskNumber
-        except ValueError:
-            return task
+            checkOption = ErrorChecker.check_task_handler_options(task)
+
+            if checkOption == "View":
+                ViewTask(fileName).view_tasks()
+                continue
+            elif checkOption == "Exit":
+                return checkOption
+
+            if task.isdigit():
+                return int(task)
+            else:
+                return task
 
     @staticmethod
     def modify_task_handler():

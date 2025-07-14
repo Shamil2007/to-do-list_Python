@@ -24,7 +24,10 @@ class RemoveTask:
             return
 
         while True:
-            removedTask = self.handler.find_task_handler("remove")
+            removedTask = self.handler.find_task_handler("remove", self.fileName)
+            if removedTask == "Exit":
+                print("❌ Modification cancelled.")
+                return
 
             if isinstance(removedTask, int):
                 # Remove by Index

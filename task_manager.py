@@ -17,8 +17,10 @@ class TaskManager:
         elif option == 3:
             ViewTask(self.fileName).view_tasks()
         elif option == 4:
-            ModifyTask(self.fileName).modify_text()
+            print("Done")
         elif option == 5:
+            ModifyTask(self.fileName).modify_text()
+        elif option == 6:
             self.fileName = ChangeFile().change_file()
             print(f"File changed to: {self.fileName}")
         else:

@@ -14,8 +14,8 @@ class Main:
 
         manager = TaskManager()
         while True:
-            choice = self.input_handler.ask_for_menu_choice(manager.fileName)
-            if manager.choose_option(choice) == 6:
+            choice = self.input_handler.ask_for_menu_choice(manager.fileName, 7)
+            if manager.choose_option(choice) == 7:
                 break
 
 

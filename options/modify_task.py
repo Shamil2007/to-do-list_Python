@@ -23,7 +23,10 @@ class ModifyTask:
             return
 
         while True:
-            task_to_modify = self.handler.find_task_handler("modify")
+            task_to_modify = self.handler.find_task_handler("modify", self.fileName)
+            if task_to_modify == "Exit":
+                print("❌ Modification cancelled.")
+                return
 
             if isinstance(task_to_modify, int):
                 if not any(task.get("Index") == task_to_modify for task in tasks):

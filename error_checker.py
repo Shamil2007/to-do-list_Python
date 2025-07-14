@@ -57,3 +57,11 @@ class ErrorChecker:
             print("Filename must end with .json.")
             return False
         return True
+
+    @staticmethod
+    def check_task_handler_options(option):
+        if option == '!' or option == "'!'":
+            return "View"
+        elif option == "exit" or option == "'exit'":
+            return "Exit"
+        return False
