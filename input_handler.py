@@ -40,12 +40,28 @@ class InputHandler(ErrorChecker):
             return choice
 
     @staticmethod
-    def add_task_handler():
+    def add_task_handler(fileName):
         while True:
-            task = input("Enter your task: ")
+            task = input("Enter your task (Type '!' to view all tasks or 'exit' to cancel):")
+
+            option = ErrorChecker.check_task_handler_options(task)
+            if option != False:
+                if option == "View":
+                    ViewTask(fileName).view_tasks()
+                    continue
+                elif option == "Exit":
+                    return option
+
             isTaskCorrectFormation = ErrorChecker.check_taskName(task)
             if isTaskCorrectFormation:
                 return task
+
+    @staticmethod
+    def check_task_availability(taskArr, newTask):
+        for task in taskArr:
+            if task["Task"] == newTask:
+                return True
+        return False
 
     @staticmethod
     def find_task_handler(type_of_task, fileName):

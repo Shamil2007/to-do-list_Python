@@ -15,28 +15,38 @@ class AddTask:
                 json.dump([], file)
 
     def add_task(self):
-        newTask = self.handler.add_task_handler()
+        while True:
+            newTask = self.handler.add_task_handler(self.fileName)
 
-        try:
-            with open(self.fileName, "r", encoding="UTF-8") as file:
-                tasks = json.load(file)
-        except (FileNotFoundError, json.JSONDecodeError):
-            tasks = []
+            if newTask == "Exit":
+                print("❌ Modification cancelled.")
+                break
 
-        if tasks:
-            max_index = max(task.get("Index", 0) for task in tasks)
-            next_index = max_index + 1
-        else:
-            next_index = 1
+            try:
+                with open(self.fileName, "r", encoding="UTF-8") as file:
+                    tasks = json.load(file)
+            except (FileNotFoundError, json.JSONDecodeError):
+                tasks = []
 
-        tasks.append({
-            "Task": newTask,
-            "Add Date": datetime.now().strftime("%Y-%m-%d"),
-            "Index": next_index,
-            "Done": False,
-        })
+            if self.handler.check_task_availability(tasks, newTask):
+                print("❗ The new task is available in Old Tasks")
+                continue
 
-        with open(self.fileName, "w", encoding="UTF-8") as file: # type: TextIO
-            json.dump(tasks, file, indent=5)
+            if tasks:
+                max_index = max(task.get("Index", 0) for task in tasks)
+                next_index = max_index + 1
+            else:
+                next_index = 1
 
-        print("✅ Task successfully added")
+            tasks.append({
+                "Task": newTask,
+                "Add Date": datetime.now().strftime("%Y-%m-%d"),
+                "Index": next_index,
+                "Done": False,
+            })
+
+            with open(self.fileName, "w", encoding="UTF-8") as file:  # type: TextIO
+                json.dump(tasks, file, indent=5)
+
+            print("✅ Task successfully added")
+            break
