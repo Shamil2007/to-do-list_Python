@@ -29,80 +29,13 @@ class Printers:
     def print_usage_info():
         import time
 
-        print("\n        ===================================================")
-        print("                    📝 PYTHON TO-DO LIST APP")
-        print("        ===================================================")
-        time.sleep(1)
-
-        print("""
-        Welcome to your personal Python-powered To-Do List!
-
-        This is a simple command-line application to help you:
-            - Stay organized
-            - Track your daily tasks
-            - Boost your productivity
-        """)
-        time.sleep(1)
-
-        print("               -------------------------------------")
-        print("                           📌 Features:")
-        print("               -------------------------------------")
-        print("""\
-        1️⃣ Add a Task
-            ➤ Add new tasks to your list anytime.
-
-        2️⃣ Remove a Task
-            ➤ Delete tasks you've completed.
-
-        3️⃣ View All Tasks
-            ➤ See a clean list of your pending tasks.
-
-        4️⃣ Exit
-            ➤ Quit the application safely.
-        """)
-        time.sleep(1)
-
-        print("               -------------------------------------")
-        print("                          🔧 How to Use:")
-        print("               -------------------------------------")
-        print("""\
-        - When the app starts, you'll see a menu of options.
-        - Simply enter the number of the action you'd like to perform.
-        For example:
-            ▸ Enter `1` to add a new task.
-            ▸ Enter `2` to remove a task by its number.
-            ▸ Enter `3` to view all tasks.
-            ▸ Enter `4` to exit the program.
-
-        - The app will guide you through each step — no worries!
-        """)
-        time.sleep(1)
-
-        print("               -------------------------------------")
-        print("                         💡 Example Flow:")
-        print("               -------------------------------------")
-        print("""\
-        > What would you like to do?
-            > 1. Add Task
-            > 2. Remove Task
-            > 3. View Tasks
-            > 4. Exit
-
-        Enter your choice: 1
-        Enter your task: Finish homework
-
-        Task added! ✅
-        """)
-        time.sleep(1)
-
-        print("        -------------------------------------------------------------")
-        print("            Thanks for using this To-Do List App. Happy organizing!")
-        print("        -------------------------------------------------------------")
-        time.sleep(1)
-
-        print("\n               ========================================")
-        print("                             Read me is over")
-        print("               ========================================\n")
+        try:
+            with open("README.md", "r", encoding="utf-8") as file:
+                for line in file:
+                    print(line.rstrip())
+                    time.sleep(0.03)  # Optional: Typing effect
+        except FileNotFoundError:
+            print("❗ README.md file not found.")
 
     @staticmethod
     def menu(fileName):
