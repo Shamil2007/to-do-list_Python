@@ -53,7 +53,7 @@ class ModifyTask:
                         break
 
             with open(self.fileName, "w", encoding="UTF-8") as file:  # type: TextIO
-                json.dump(tasks, file, indent=3)
+                json.dump(tasks, file, indent=5)
 
             print("✅ Task modified successfully.")
             break

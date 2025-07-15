@@ -31,11 +31,12 @@ class AddTask:
 
         tasks.append({
             "Task": newTask,
-            "Date": datetime.now().strftime("%Y-%m-%d"),
-            "Index": next_index
+            "Add Date": datetime.now().strftime("%Y-%m-%d"),
+            "Index": next_index,
+            "Done": False,
         })
 
         with open(self.fileName, "w", encoding="UTF-8") as file: # type: TextIO
-            json.dump(tasks, file, indent=3)
+            json.dump(tasks, file, indent=5)
 
         print("✅ Task successfully added")

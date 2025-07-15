@@ -1,5 +1,6 @@
 from options.add_task import AddTask
 from options.change_file import ChangeFile
+from options.done_task import DoneTask
 from options.modify_task import ModifyTask
 from options.remove_task import RemoveTask
 from options.view_task import ViewTask
@@ -17,7 +18,7 @@ class TaskManager:
         elif option == 3:
             ViewTask(self.fileName).view_tasks()
         elif option == 4:
-            print("Done")
+            DoneTask(self.fileName).done_task()
         elif option == 5:
             ModifyTask(self.fileName).modify_text()
         elif option == 6:

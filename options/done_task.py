@@ -1,11 +1,11 @@
 import json
 import os
 from typing import TextIO
-
+from datetime import datetime
 from input_handler import InputHandler
 
 
-class RemoveTask:
+class DoneTask:
     def __init__(self, filename="lists/to_do.json"):
         self.fileName = filename
         self.handler = InputHandler()
@@ -14,40 +14,43 @@ class RemoveTask:
             with open(self.fileName, "w", encoding="UTF-8") as file: # type: TextIO
                 json.dump([], file)
 
-    def remove_task(self):
+    def done_task(self):
         try:
             with open(self.fileName, "r", encoding="UTF-8") as file:
                 tasks = json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
-            print("⚠️ No tasks to remove.")
+            print("⚠️ No tasks to done.")
             return
 
         while True:
-            removedTask = self.handler.find_task_handler("remove", self.fileName)
-            if removedTask == "Exit":
+            doneTask = self.handler.find_task_handler("done", self.fileName)
+            if doneTask == "Exit":
                 print("❌ Modification cancelled.")
                 return
 
-            if isinstance(removedTask, int):
-                # Remove by Index
-                if not any(task.get("Index") == removedTask for task in tasks):
+            if isinstance(doneTask, int):
+                if not any(task.get("Index") == doneTask for task in tasks):
                     print("\n❗ No task found with that index.\n")
                     continue
-                updatedTasks = [task for task in tasks if task.get("Index") != removedTask]
+
+                for task in tasks:
+                    if task.get("Index") == doneTask:
+                        task["Done"] = True
+                        task["Finish Date"] = datetime.now().strftime("%Y-%m-%d")
+                        break
+
             else:
-                # Remove by Task name
-                if not any(task.get("Task") == removedTask for task in tasks):
+                if not any(task.get("Task") == doneTask for task in tasks):
                     print("\n❗ No task found with that name.\n")
                     continue
-                updatedTasks = [task for task in tasks if task.get("Task") != removedTask]
 
-            i = 1
-            for task in updatedTasks:
-                task["Index"] = i
-                i += 1
+                for task in tasks:
+                    if task.get("Task") == doneTask:
+                        task["Done"] = True
+                        break
 
             with open(self.fileName, "w", encoding="UTF-8") as file:  # type: TextIO
-                json.dump(updatedTasks, file, indent=5)
+                json.dump(tasks, file, indent=5)
 
-            print("✅ Task removed successfully.")
+            print("✅ Task modified successfully.")
             break

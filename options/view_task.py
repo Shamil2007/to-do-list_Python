@@ -18,10 +18,16 @@ class ViewTask:
             for data in task:
                 time.sleep(0.3)
                 if data == "Task":
-                    print(f"Task is '{task[data]}'")
+                    print(f"\nTask is '{task[data]}'")
                 elif data == "Date":
                     print(f"The task added in {task[data]}")
-                else:
+                elif data == "Index":
                     print(f"The task number is {task[data]}")
-                    print("-" * (max(len(task['Task']), len(task['Date'])) + len("The task added in") + 2))
+                elif data == "Done":
+                    print(f"The task status is {task[data]}")
+                else:
+                    if task["Done"]:
+                        print(f"The task is finished in {task["Finish Date"]}")
+            if len(tasks) != 1:
+                print("-" * (len(task['Add Date']) + len("The task added in") + 2))
         return

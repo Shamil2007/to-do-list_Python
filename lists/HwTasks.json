@@ -1,7 +1,9 @@
 [
-   {
-      "Task": "Newtaks",
-      "Date": "2025-07-15",
-      "Index": 1
-   }
+     {
+          "Task": "Remove me 2.",
+          "Add Date": "2025-07-15",
+          "Index": 1,
+          "Done": true,
+          "Finish Date": "2025-07-15"
+     }
 ]

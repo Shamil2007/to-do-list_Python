@@ -1,37 +1,8 @@
 [
-   {
-      "Task": "Add modify option",
-      "Date": "2025-07-14",
-      "Index": 1
-   },
-   {
-      "Task": "file changing",
-      "Date": "2025-07-14",
-      "Index": 2
-   },
-   {
-      "Task": "Done option",
-      "Date": "2025-07-14",
-      "Index": 3
-   },
-   {
-      "Task": "FINISH date",
-      "Date": "2025-07-14",
-      "Index": 4
-   },
-   {
-      "Task": "l give up to do smth",
-      "Date": "2025-07-14",
-      "Index": 5
-   },
-   {
-      "Task": "ASk for view tasks in modify abd remove",
-      "Date": "2025-07-14",
-      "Index": 6
-   },
-   {
-      "Task": "The new task should not be in the tasks",
-      "Date": "2025-07-14",
-      "Index": 7
-   }
+     {
+          "Task": "Be careful with added task, that should not be the same with old tasks name 2.",
+          "Add Date": "2025-07-15",
+          "Index": 1,
+          "Done": false
+     }
 ]
