@@ -16,7 +16,8 @@ class Printers:
 
         t.sleep(1)
         print("Stay organized, boost your productivity, and never forget a task again! \n"
-              "This sleek and simple To-Do List app is built with Python to help you effortlessly manage your daily chores, goals, and ideas. \n")
+              "This sleek and simple To-Do List app is built with Python "
+              "\n           to help you effortlessly manage your daily chores, goals, and ideas. \n")
 
         t.sleep(1)
         print("With just a few easy commands, you can:\n"

@@ -75,14 +75,26 @@ class InputHandler(ErrorChecker):
                 return newTaskName
 
     @staticmethod
-    def set_file_name(folder):
+    def set_file_name(folder, filesArr):
         while True:
-            name = input("Enter the file name (e.g., todo.json): ").strip()
-            if ErrorChecker.is_valid_filename(name):
-                full_path = os.path.join(folder, name)
-                if os.path.exists(full_path):
-                    print("A file with this name already exists.")
-                    overwrite = input("Do you want to overwrite it? (y/n): ").lower()
-                    if overwrite != 'y':
-                        return "No override", full_path
-                return '_', full_path
+            name = input("Enter the file name (e.g., todo.json) or choose available file index: ").strip()
+            try:
+                index = int(name) - 1
+                if isinstance(index, int):
+                    if not ErrorChecker.check_filesArr(filesArr, index):
+                        print("❗ The file index is not available! ")
+                        continue
+                    fileName = filesArr[index]
+                    full_path = os.path.join(folder, fileName)
+                    return "No override", full_path
+                else:
+                    raise ValueError
+            except ValueError:
+                if ErrorChecker.is_valid_filename(name):
+                    full_path = os.path.join(folder, name)
+                    if os.path.exists(full_path):
+                        print("A file with this name already exists.")
+                        overwrite = input("⚠️ Do you want to overwrite it? (y/n): ").lower()
+                        if overwrite != 'y':
+                            return "No override", full_path
+                    return '_', full_path

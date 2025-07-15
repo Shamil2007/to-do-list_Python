@@ -65,3 +65,9 @@ class ErrorChecker:
         elif option == "exit" or option == "'exit'":
             return "Exit"
         return False
+
+    @staticmethod
+    def check_filesArr(filesArr, number):
+        if 0 <= number < len(filesArr):
+            return True
+        return False
